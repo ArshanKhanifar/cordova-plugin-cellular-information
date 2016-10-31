@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-cellular-information" version="0.2.3">
+    <name>Cell Info</name>
+    <description>Show's phone's cellular info</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,sim,carrier,mcc,mnc,telephonenumber</keywords>
+    <js-module src="www/device.js" name="device">
+        <clobbers target="device" />
+    </js-module>
+    <repo>https://github.com/pbakondy/cordova-plugin-sim</repo>
+
+      <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+        <feature name="CellularInformation">
+            <param name="ios-package" value="CellularInformation" />
+        </feature>
+        </config-file>
+        <header-file src="src/ios/Sim.h"/>
+        <source-file src="src/ios/Sim.m"/>
+    </platform>
+
+</plugin>
