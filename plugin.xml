@@ -19,6 +19,7 @@
         </config-file>
         <header-file src="src/ios/CellularInformation.h"/>
         <source-file src="src/ios/CellularInformation.m"/>
+        <framework src="CoreTelephony.framework"/>
     </platform>
 
 </plugin>
