@@ -8,7 +8,7 @@
     <js-module src="www/device.js" name="device">
         <clobbers target="device" />
     </js-module>
-    <repo>https://github.com/pbakondy/cordova-plugin-sim</repo>
+    <repo>https://github.com/arshankhanifar/cordova-plugin-cellular-information</repo>
 
       <!-- ios -->
     <platform name="ios">
@@ -17,8 +17,8 @@
             <param name="ios-package" value="CellularInformation" />
         </feature>
         </config-file>
-        <header-file src="src/ios/Sim.h"/>
-        <source-file src="src/ios/Sim.m"/>
+        <header-file src="src/ios/CellularInformation.h"/>
+        <source-file src="src/ios/CellularInformation.m"/>
     </platform>
 
 </plugin>
