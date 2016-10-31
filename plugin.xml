@@ -5,8 +5,8 @@
     <description>Show's phone's cellular info</description>
     <license>Apache 2.0</license>
     <keywords>cordova,sim,carrier,mcc,mnc,telephonenumber</keywords>
-    <js-module src="www/device.js" name="device">
-        <clobbers target="device" />
+    <js-module src="www/cellularInfo.js" name="CellularInformation">
+        <clobbers target="CellularInformation" />
     </js-module>
     <repo>https://github.com/arshankhanifar/cordova-plugin-cellular-information</repo>
 
