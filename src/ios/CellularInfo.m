@@ -92,7 +92,7 @@
     CDVPluginResult* pluginResult = nil;
     NSString* ipaddr = [self getIP];
 
-    if (ipaddr != nil) {
+    if (ipaddr != nil && (ipaddr != NULL)) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:ipaddr];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
