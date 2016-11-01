@@ -38,11 +38,11 @@
   }
 
   NSDictionary *simData = [NSDictionary dictionaryWithObjectsAndKeys:
-    @(allowsVOIPResult), @"allowsVOIP",
-    carrierNameResult, @"carrierName",
-    carrierCountryResult, @"countryCode",
-    carrierCodeResult, @"mcc",
-    carrierNetworkResult, @"mnc",
+    @(allowsVOIPResult), @"Allows VOIP",
+    carrierNameResult, @"Carrier Name",
+    carrierCountryResult, @"Country Code",
+    carrierCodeResult, @"MCC",
+    carrierNetworkResult, @"MNC",
     nil];
 
   CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:simData];
