@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  id="cordova-plugin-sim"
+  id="cordova-plugin-cellular-information"
   version="1.3.0">
-  <name>SIM</name>
+  <name>cellular-information</name>
   <description>A plugin to get the device's SIM data (carrier name, mcc mnc, country code, telephonenumber, imei, etc)</description>
   <license>MIT</license>
   <keywords>cordova,sim,carrier,mcc,mnc,telephonenumber</keywords>
-  <repo>https://github.com/pbakondy/cordova-plugin-sim</repo>
-  <issue>https://github.com/pbakondy/cordova-plugin-sim/issues</issue>
+  <repo>https://github.com/arshankhanifar/cordova-plugin-cellular-information</repo>
 
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
