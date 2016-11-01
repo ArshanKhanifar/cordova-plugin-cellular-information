@@ -70,10 +70,11 @@
 
                 if([name isEqualToString:@"en0"]) {
                     // Interface is the wifi connection on the iPhone
-                    wifiAddress = addr;
+                    wifiAddress = [NSString stringWithFormat: @"%@ %@", @"connected via wifi : ", addr];
                 } else if([name isEqualToString:@"pdp_ip0"]) {
                     // Interface is the cell connection on the iPhone
-                    cellAddress = addr;
+                    cellAddress = [NSString stringWithFormat: @"%@ %@", @"connected via cell : ", addr];
+                    
                 }
             }
             temp_addr = temp_addr->ifa_next;
