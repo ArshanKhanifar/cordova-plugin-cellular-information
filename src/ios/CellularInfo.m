@@ -78,13 +78,13 @@
             }
             temp_addr = temp_addr->ifa_next;
         }
-        NSString *wifiAddress = [NSString stringWithString: wifiAddress];
-        NSString *cellAddress = [NSString stringWithString: cellAddress];
+        NSString *wifiImmutable = [NSString stringWithString: wifiAddress];
+        NSString *cellImmutable = [NSString stringWithString: cellAddress];
         // Free memory
         freeifaddrs(interfaces);
     }
     
-    NSString *addr = wifiAddress ? wifiAddress : cellAddress;
+    NSString *addr = wifiImmutable ? wifiImmutable : cellImmutable;
     return addr;
 }
 
