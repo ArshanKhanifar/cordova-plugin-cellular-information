@@ -1,5 +1,5 @@
 module.exports = {
-  getSimInfo: function(successCallback, errorCallback) {
+  getCellularInfo: function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, 'Sim', 'getSimInfo', []);
   }
 };

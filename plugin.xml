@@ -13,8 +13,8 @@
     <engine name="cordova" version=">=3.0.0"/>
   </engines>
 
-  <js-module src="www/sim.js" name="Sim">
-    <merges target="window.plugins.sim" />
+  <js-module src="www/CellularInfo.js" name="CellularInfo">
+    <merges target="window.plugins.CellularInfo" />
   </js-module>
 
   <!-- android -->
@@ -41,13 +41,13 @@
   <!-- ios -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="Sim">
-        <param name="ios-package" value="Sim" />
+      <feature name="CellularInfo">
+        <param name="ios-package" value="CellularInfo" />
       </feature>
     </config-file>
 
-    <header-file src="src/ios/Sim.h"/>
-    <source-file src="src/ios/Sim.m"/>
+    <header-file src="src/ios/CellularInfo.h"/>
+    <source-file src="src/ios/CellularInfo.m"/>
 
     <framework src="CoreTelephony.framework"/>
   </platform>

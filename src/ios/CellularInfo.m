@@ -7,13 +7,13 @@
 // class CTCarrier
 // https://developer.apple.com/library/prerelease/ios/documentation/NetworkingInternet/Reference/CTCarrier/index.html
 
-#import "Sim.h"
+#import "CellularInfo.h"
 #import <Cordova/CDV.h>
 #import <Foundation/Foundation.h>
 
-@implementation Sim
+@implementation CellularInfo
 
-- (void)getSimInfo:(CDVInvokedUrlCommand*)command
+- (void)getCellularInfo:(CDVInvokedUrlCommand*)command
 {
   CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
   CTCarrier *carrier = [netinfo subscriberCellularProvider];

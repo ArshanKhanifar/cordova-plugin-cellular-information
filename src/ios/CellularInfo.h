@@ -2,7 +2,7 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
-@interface Sim : CDVPlugin
+@interface CellularInfo : CDVPlugin
 
 - (void)getSimInfo:(CDVInvokedUrlCommand*)command;
 
