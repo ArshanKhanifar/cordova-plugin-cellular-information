@@ -7,13 +7,13 @@
 // class CTCarrier
 // https://developer.apple.com/library/prerelease/ios/documentation/NetworkingInternet/Reference/CTCarrier/index.html
 
-#import "CellularInformation.h"
+#import "Sim.h"
 #import <Cordova/CDV.h>
 #import <Foundation/Foundation.h>
 
-@implementation CellularInformation
+@implementation Sim
 
-- (void)getCellularInformation:(CDVInvokedUrlCommand*)command
+- (void)getSimInfo:(CDVInvokedUrlCommand*)command
 {
   CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
   CTCarrier *carrier = [netinfo subscriberCellularProvider];
@@ -23,8 +23,6 @@
   NSString *carrierCountryResult = [carrier isoCountryCode];
   NSString *carrierCodeResult = [carrier mobileCountryCode];
   NSString *carrierNetworkResult = [carrier mobileNetworkCode];
-  NSString *carrierPhoneNumberResult = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
-
 
   if (!carrierNameResult) {
     carrierNameResult = @"";
@@ -38,17 +36,13 @@
   if (!carrierNetworkResult) {
     carrierNetworkResult = @"";
   }
-  if (!carrierPhoneNumberResult) {
-    carrierPhoneNumberResult = @"";
-  }
 
   NSDictionary *simData = [NSDictionary dictionaryWithObjectsAndKeys:
-    @(allowsVOIPResult), @"Allows VOIP",
-    carrierNameResult, @"Carrier Name",
-    carrierCountryResult, @"Country Code",
-    carrierCodeResult, @"MCC",
-    carrierNetworkResult, @"MNC",
-    carrierPhoneNumberResult, @"Phone Number"
+    @(allowsVOIPResult), @"allowsVOIP",
+    carrierNameResult, @"carrierName",
+    carrierCountryResult, @"countryCode",
+    carrierCodeResult, @"mcc",
+    carrierNetworkResult, @"mnc",
     nil];
 
   CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:simData];
