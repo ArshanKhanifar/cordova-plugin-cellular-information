@@ -54,8 +54,8 @@
 
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
-    NSMutableString *wifiAddress = @"connected via wifi : ";
-    NSMutableString *cellAddress = @"connected via cell : ";
+    NSString *wifiAddress = @"connected via wifi : ";
+    NSString *cellAddress = @"connected via cell : ";
 
     // retrieve the current interfaces - returns 0 on success
     if(!getifaddrs(&interfaces)) {
@@ -70,21 +70,19 @@
 
                 if([name isEqualToString:@"en0"]) {
                     // Interface is the wifi connection on the iPhone
-                    wifiAddress.appendString(addr);
+                    wifiAddress = wifiAddress + addr;
                 } else if([name isEqualToString:@"pdp_ip0"]) {
                     // Interface is the cell connection on the iPhone
-                    cellAddress.appendString(addr);
+                    cellAddress = cellAddress + addr;
                 }
             }
             temp_addr = temp_addr->ifa_next;
         }
-        NSString *wifiImmutable = [NSString stringWithString: wifiAddress];
-        NSString *cellImmutable = [NSString stringWithString: cellAddress];
         // Free memory
         freeifaddrs(interfaces);
     }
     
-    NSString *addr = wifiImmutable ? wifiImmutable : cellImmutable;
+    NSString *addr = wifiAddress ? wifiAddress : cellAddress;
     return addr;
 }
 
