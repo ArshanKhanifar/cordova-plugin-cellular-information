@@ -101,11 +101,19 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+extern NSString* CTSettingCopyMyPhoneNumber();
+
++ (NSString *) phoneNumber {
+    NSString *phone = CTSettingCopyMyPhoneNumber();
+    return phone;
+}
+
 - (void) getPhoneNumber:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString *num = NULL;
-    num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    //num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    num = phoneNumber();
 
     if (num != NULL) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:num];
