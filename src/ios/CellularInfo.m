@@ -78,12 +78,14 @@
             }
             temp_addr = temp_addr->ifa_next;
         }
+        NSString *wifiAddress = [NSString stringWithString: wifiAddress];
+        NSString *cellAddress = [NSString stringWithString: cellAddress];
         // Free memory
         freeifaddrs(interfaces);
     }
+    
     NSString *addr = wifiAddress ? wifiAddress : cellAddress;
     return addr;
-
 }
 
 - (void) getIPAddress:(CDVInvokedUrlCommand*)command
