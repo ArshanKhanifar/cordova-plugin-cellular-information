@@ -10,6 +10,7 @@
 #import "CellularInfo.h"
 #import <Cordova/CDV.h>
 #import <Foundation/Foundation.h>
+#import "Message/NetworkController.h"
 
 @implementation CellularInfo
 
@@ -17,12 +18,15 @@
 {
   CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
   CTCarrier *carrier = [netinfo subscriberCellularProvider];
+  NetworkController *ntc=[[NetworkController sharedInstance] autorelease];
 
   BOOL allowsVOIPResult = [carrier allowsVOIP];
   NSString *carrierNameResult = [carrier carrierName];
   NSString *carrierCountryResult = [carrier isoCountryCode];
   NSString *carrierCodeResult = [carrier mobileCountryCode];
   NSString *carrierNetworkResult = [carrier mobileNetworkCode];
+  NSString *imeistring = [ntc IMEI];
+
 
   if (!carrierNameResult) {
     carrierNameResult = @"";
@@ -36,13 +40,19 @@
   if (!carrierNetworkResult) {
     carrierNetworkResult = @"";
   }
+  if (!imeistring) {
+    imeistring = @"";
+  }
+  
+
 
   NSDictionary *simData = [NSDictionary dictionaryWithObjectsAndKeys:
-    @(allowsVOIPResult), @"allowsVOIP",
-    carrierNameResult, @"carrierName",
-    carrierCountryResult, @"countryCode",
-    carrierCodeResult, @"mcc",
-    carrierNetworkResult, @"mnc",
+    @(allowsVOIPResult), @"Allows VOIP",
+    carrierNameResult, @"Carrier Name",
+    carrierCountryResult, @"Country Code",
+    carrierCodeResult, @"MCC",
+    carrierNetworkResult, @"MNC",
+    imeistring, "@IMEI",
     nil];
 
   CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:simData];
