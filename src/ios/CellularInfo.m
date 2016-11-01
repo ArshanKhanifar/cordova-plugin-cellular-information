@@ -101,7 +101,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void) getPhoneNumber:(CDVInvokedUrlCommand)command
+- (void) getPhoneNumber:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString *num = NULL;
