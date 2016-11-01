@@ -4,6 +4,6 @@
 
 @interface CellularInfo : CDVPlugin
 
-- (void)getCellularInfo:(CDVInvokedUrlCommand*)command;
+- (void)getSimInfo:(CDVInvokedUrlCommand*)command;
 
 @end
