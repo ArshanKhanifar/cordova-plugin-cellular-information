@@ -50,44 +50,47 @@
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (NSString *)getIP {
+- (NSArray *)getIP {
 
-    NSString *address = @"error";
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    // retrieve the current interfaces - returns 0 on success
-    success = getifaddrs(&interfaces);
-    if (success == 0) {
-        // Loop through linked list of interfaces
-        temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                // Check if interface is en0 which is the wifi connection on the iPhone
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    // Get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+    NSMutableArray *ipAddresses = [NSMutableArray array] ;
 
+    struct ifaddrs *allInterfaces;
+
+    // Get list of all interfaces on the local machine:
+    if (getifaddrs(&allInterfaces) == 0) {
+        struct ifaddrs *interface;
+
+        // For each interface ...
+        for (interface = allInterfaces; interface != NULL; interface = interface->ifa_next) {
+            unsigned int flags = interface->ifa_flags;
+            struct sockaddr *addr = interface->ifa_addr;
+
+            // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
+            if ((flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING)) {
+                if (addr->sa_family == AF_INET || addr->sa_family == AF_INET6) {
+
+                    // Convert interface address to a human readable string:
+                    char host[NI_MAXHOST];
+                    getnameinfo(addr, addr->sa_len, host, sizeof(host), NULL, 0, NI_NUMERICHOST);
+
+                    [ipAddresses addObject:[[NSString alloc] initWithUTF8String:host]];
                 }
-
             }
-
-            temp_addr = temp_addr->ifa_next;
         }
+
+        freeifaddrs(allInterfaces);
     }
-    // Free memory
-    freeifaddrs(interfaces);
-    return address;
+    return ipAddresses;
 
 }
 
 - (void) getIPAddress:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* ipaddr = [self getIP];
+    NSArray* ipaddr = [self getIP];
 
-    if (ipaddr != nil && ![ipaddr isEqualToString:@"error"]) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:ipaddr];
+    if (ipaddr != nil) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:ipaddr];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
