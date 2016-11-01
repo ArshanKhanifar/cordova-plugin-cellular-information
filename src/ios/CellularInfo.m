@@ -103,17 +103,12 @@
 
 extern NSString* CTSettingCopyMyPhoneNumber();
 
-+ (NSString *) phoneNumber {
-    NSString *phone = CTSettingCopyMyPhoneNumber();
-    return phone;
-}
-
 - (void) getPhoneNumber:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString *num = NULL;
     //num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
-    num = phoneNumber();
+    num = CTSettingCopyMyPhoneNumber();
 
     if (num != NULL) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:num];
