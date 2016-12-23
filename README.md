@@ -25,4 +25,6 @@ Additionally, the `getIPAddress` method from [cordova-plugin-networkinterface](h
 
 The `getIPAddress()` method from this plugin has a small difference with the one from [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface):
 
-On ios devices only, I've expanded this plugin to return the ip address of the cellular network if the device is using a cellular network. Whereas on cordova-plugin-networkinterface, this method only returns the wifi ip address. If the phone is connected to a wifi network, this plugin will work just like cordova-plugin-networkinterface and will return the wifi ip address.
+On ios devices only, I've expanded this plugin to return the ip address of the cellular network if the device is using a cellular network. Whereas on cordova-plugin-networkinterface, this method only returns the wifi ip address. If the phone is connected to a wifi network, this plugin will work just like cordova-plugin-networkinterface and will return the wifi ip address. On non-ios devices, this plugin will be no different than cordova-plugin-networkinterface.
+
+So the returned string from the method will be: "connected via wifi : x.x.x.x" or "connected via cell : x.x.x.x" depending on the phone's network connection status. 
