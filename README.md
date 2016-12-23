@@ -4,7 +4,6 @@ The usage is similar to that of [cordova-plugin-sim](https://github.com/pbakondy
 
 Additionally, the `getIPAddress` method from [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface) is exposed here as another method of the `CellularInfo` object. Its usage is the exact same thing.
 
-
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
@@ -24,4 +23,6 @@ Additionally, the `getIPAddress` method from [cordova-plugin-networkinterface](h
 
 ### Difference with cordova-plugin-networkinterface
 
-The `getIPAddress()` method from this plugin has a small difference with the one from [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface). On ios devices, this method returns the cellular ip address if the device is connected to a cellular network, whereas on cordova-plugin-networkinterface, this method only returns the wifi ip address.
+The `getIPAddress()` method from this plugin has a small difference with the one from [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface):
+
+On ios devices only, I've expanded this plugin to return the ip address of the cellular network if the device is using a cellular network. Whereas on cordova-plugin-networkinterface, this method only returns the wifi ip address. If the phone is connected to a wifi network, this plugin will work just like cordova-plugin-networkinterface and will return the wifi ip address.
